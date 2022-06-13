@@ -9,5 +9,10 @@ Le message enregistré actuellement dans la base ne va pas s'afficher dans l'inp
 un span juste au-dessus. De plus on peut aussi désactiver l'affichage avec un switch (une checkbox).
 On peut ensuite se rendre sur la page d'affichage en cliquant sur la navbar à gauche sur le bouton "visualisation".
 Les données seront mis à jour en temps réel sur celle-ci, et si quelqu'un d'autre ouvre une autre page dashboard et met à jour les données, on les verra.
+La page visualisation s'adaptera selon la longueur des textes, ce qui permet un affichage flexible.
+
+Pour ce qui est du responsive design, les deux pages s'adaptent selon la taille de l'écran, le site peut donc être proprement lu sur télephone ou sur tablette.
+En effet sur la première , la barre de naviguation fait disparaître ses textes pour ne laisser place qu'à des logos. Sur la seconde, le slider d'image se retrouve en bas de page. En plus de cela, la taille des textes et éléments s'adaptent.
+
 
 CASTRO-PESTANA Raphael
