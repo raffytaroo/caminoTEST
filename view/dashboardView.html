@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="dashboardStyle.css">
+    <title>CAMINO - Dashboard</title>
+    <link rel="icon" type="image/png" href="..\media\logoCamino.jpg">
+    <script src="../controller/utils.js"></script>
+</head>
+
+<body>
+    <div id="generalDiv">
+        <!-- Barre verticale sur la gauche -->
+        <div id='navbarLeft'>
+            <!-- <div> -->
+            <div>
+                <img id="fit-picture" src="..\media\logoCamino.jpg" alt="logoCamino">
+            </div>
+            <a class="liens" href="../view/dashboardView.html">
+                <div class="navItems">
+                    <img class="iconeNav" width="64px" height="64px" src="..\media\icon-config.png" alt="iconConfig">
+                    <span class="textNav"> Dashboard</span>
+                </div>
+            </a>
+
+            <a class="liens" href="../view/visualisationView.html">
+                <div class="navItems">
+                    <img class="iconeNav" width="64px" height="64px" src="..\media\icon-visualisation.png" alt="iconVisualisation">
+                    <span class="textNav"> Visualisation </span>
+                </div>
+            </a>
+
+            <!-- </div> -->
+        </div>
+
+        <div id="pannelRight">
+            <!-- Div Title -->
+            <div id="titleTop">
+                <span>Panneau de contrôle</span>
+                <img id="exMarkTitle" src="..\media\exBlack.png" alt="exclamationMark">
+            </div>
+
+            <!-- Div Items -->
+            <div id="itemBox">
+
+
+                <!-- item1 -->
+                <div class="items i1">
+                    <span class="spanItemTitle">ITEM 1</span>
+                    <span class="spanInfo">Texte affiché:</span>
+                    <div class="textDisplayedDiv">
+                        <span class="textDisplayed" title="Texte affiché dans la page visualisation"></span>
+                    </div>
+
+                    <div class="itemsEnterDiv" data-id="1">
+                        <div class="inputTextDiv">
+                            <label class="labelsEnterDiv" for="inputTexItem1">Modifier:</label>
+                            <input type="text" class="inputTextItems" data-id="1">
+                        </div>
+
+                        <div class="checkDiv">
+                            <label class="labelsEnterDiv" for="checkItem1"
+                                title="Afficher le texte dans la page visualisation">Afficher :</label>
+                            <label class="switch">
+                                <input type="checkbox" onchange='handleClick(this);' class="checkItems" data-id="1">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- item2 -->
+                <div class="items i2">
+                    <span class="spanItemTitle">ITEM 2</span>
+                    <span class="spanInfo">Texte affiché:</span>
+                    <div class="textDisplayedDiv">
+                        <span class="textDisplayed" title="Texte affiché dans la page visualisation"></span>
+                    </div>
+
+                    <div class="itemsEnterDiv" data-id="2">
+                        <div class="inputTextDiv">
+                            <label class="labelsEnterDiv" for="inputTexItem2">Modifier:</label>
+                            <input type="text" class="inputTextItems" data-id="2">
+                        </div>
+
+                        <div class="checkDiv">
+                            <label class="labelsEnterDiv" for="checkItem2"
+                                title="Afficher le texte dans la page visualisation">Afficher :</label>
+                            <label class="switch">
+                                <input type="checkbox" onchange='handleClick(this);' class="checkItems" data-id="2">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- item3 -->
+                <div class="items i3">
+                    <span class="spanItemTitle">ITEM 3</span>
+                    <span class="spanInfo">Texte affiché:</span>
+                    <div class="textDisplayedDiv">
+                        <span class="textDisplayed" title="Texte affiché dans la page visualisation"></span>
+                    </div>
+
+                    <div class="itemsEnterDiv" data-id="3">
+                        <div class="inputTextDiv">
+                            <label class="labelsEnterDiv" for="inputTexItem3">Modifier:</label>
+                            <input type="text" class="inputTextItems" data-id="3">
+                        </div>
+
+                        <div class="checkDiv">
+                            <label class="labelsEnterDiv" for="checkItem3"
+                                title="Afficher le texte dans la page visualisation">Afficher :</label>
+                            <label class="switch">
+                                <input type="checkbox" onchange='handleClick(this);' class="checkItems" data-id="3">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    const inputTextItems = document.getElementsByClassName("inputTextItems");
+    const checkItems = document.getElementsByClassName("checkItems");
+    const textDisplayed = document.getElementsByClassName('textDisplayed');
+
+    //Récupération des données et nitialisation de l'html
+    getAjaxMsg(initInputValue);
+    getAjaxMsg(majItems);
+
+    //Import dans l'html régulier
+    const interval = window.setInterval(() => getAjaxMsg(majItems), 2000); //appel à la fonction toutes les 2 secondes
+
+    for (const inputText of inputTextItems) {
+        // Evenement lancé lorsqu'un utilisateur écris du texte dans un input d'item
+        inputText.addEventListener("input", event => {
+            //récupération des données
+            const idItem = inputText.dataset.id;
+            const valueItem = inputText.value;
+            const dateLastChange = new Date().toJSON().slice(0, 19).replace('T', ' ');
+
+            //export des données
+            postAjaxTextWritten(event, idItem, valueItem, dateLastChange);
+        });
+    }
+
+    // Evenement lancé lorsqu'un utilisateur clique sur une checkbox
+    function handleClick(checkbox) {
+        //récupération des données
+        const idItem = checkbox.dataset.id;
+        const activeItem = +checkbox.checked;
+        const dateLastChange = new Date().toJSON().slice(0, 19).replace('T', ' ');
+
+        //export des données
+        postAjaxActive(event, idItem, activeItem, dateLastChange);
+    }
+
+
+    //-----------------------------------------------------------------------------------------------------------------------------------
+    // fonction qui initialise les valeurs de base des inputs avec celles de la bdd, fonction necessaire, 
+    // car on ne veut pas que la zone de texte sur laquelle ecris l'utilisateur, puisse être actualisé à cause
+    // d'un autre texte entré par un autre utilisateur (contrairement aux objets géres dans majItems())
+    function initInputValue(result) {
+        for (const inputText of inputTextItems) {
+            inputText.value = result[inputText.dataset.id - 1]['textWritten'];
+        }
+    }
+
+    //fonction qui met à jour le text des items et s'ils s'affichent ou non
+    function majItems(result) {
+        for (const item of checkItems) {
+            textDisplayed[item.dataset.id - 1].innerHTML = result[item.dataset.id - 1]['textWritten'];
+            if (result[item.dataset.id - 1]['active'] == 1) {
+                item.checked = true;
+            } else {
+                item.checked = false;
+            }
+        }
+    }
+
+    //fonction qui permet l'envoie des messages AJAX et de modifier uniquement textWrittens
+    function postAjaxTextWritten(event, id, textWritten, dateLastChange) {
+        //1. stopper l'evenement envoyé
+        event.stopPropagation();
+        event.preventDefault();
+
+        //2. conditionner les données
+        const data = new FormData();
+        data.append('id', id);
+        data.append('textWritten', textWritten);
+        data.append('dateLastChange', dateLastChange);
+        //3. configurer une requete AJAX et l'envoyer
+        const xhr = getxhr();
+        // xhr.open('POST', '../controller/handlerElement.php?action=write');
+        xhr.open('POST', '../controller/handlerElement.php?action=writeTextWritten', true);
+        xhr.send(data);
+        xhr.onload = function () {
+            const resultat = xhr.responseText;
+            console.log(resultat);
+        }
+    }
+
+    //fonction qui permet l'envoie des messages AJAX et de modifier uniquement active
+    function postAjaxActive(event, id, active, dateLastChange) {
+        //1. stopper l'evenement envoyé
+        event.stopPropagation();
+        event.preventDefault();
+
+        //2. conditionner les données
+        const data = new FormData();
+        data.append('id', id);
+        data.append('active', active);
+        data.append('dateLastChange', dateLastChange);
+        //3. configurer une requete AJAX et l'envoyer
+        const xhr = getxhr();
+        // xhr.open('POST', '../controller/handlerElement.php?action=write');
+        xhr.open('POST', '../controller/handlerElement.php?action=writeActive', true);
+        xhr.send(data);
+        xhr.onload = function () {
+            const resultat = xhr.responseText;
+            console.log(resultat);
+        }
+    }
+
+
+</script>
+
+</html>

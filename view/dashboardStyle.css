@@ -1,0 +1,246 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font: 1.2em "Fira Sans", sans-serif;
+}
+
+.liens {
+    text-decoration: none;
+}
+
+.liens:hover {
+    background-color: #4d6f8c;
+}
+
+#fit-picture {
+    width: 200px;
+    height: 200px;
+}
+
+#generalDiv {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+}
+
+#navbarLeft {
+    display: flex;
+    flex-direction: column;
+    background-color: #212F3C;
+    padding: 3%;
+}
+
+.navItems {
+    justify-content: space-between;
+    gap: 7%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: larger;
+}
+
+#pannelRight {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    background-color: lightgray;
+    height: 100vh;
+}
+
+#itemBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.itemsEnterDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#titleTop {
+    background-color: whitesmoke;
+    padding: 2%;
+    font-size: 300%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: oblique;
+}
+
+#exMarkTitle {
+    height: 6vh;
+}
+
+
+.items {
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-top: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    gap: 9px;
+    box-shadow: 40px -14px #212F3C;
+}
+
+
+.spanInfo {
+    font-size: small;
+    color: grey;
+}
+
+
+
+.spanItemTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.textDisplayedDiv {
+    background-color: lightgray;
+    border-radius: 10px;
+    text-align: center;
+    color: gray;
+    height: 1.5vw;
+    max-width: 15vw;
+    overflow: hidden;    
+}
+
+.textDisplayed {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-overflow: ellipsis;
+}
+
+#checkDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+/* SLIDERS */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #212F3C;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #212F3C;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 1189px) {
+    #navbarLeft{
+        height: 250vh;
+    }
+
+    #pannelRight{
+        height: 250vh;
+    }
+
+    #exMarkTitle {
+        height: 3vh;
+    }
+
+    body{
+        overflow: scroll;
+        font: 2.4em "Fira Sans", sans-serif;
+    }
+
+    #titleTop {
+        background-color: whitesmoke;
+        padding: 2%;
+        font-size: 150%;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-style: oblique;
+    }
+
+    .spanInfo{
+        font-size: 80%;
+    }
+
+    .textDisplayedDiv {
+        height: 5vh;
+        width: 60vw;
+        max-width: 60vw;   
+    }
+
+    .inputTextItems{
+        height: 5vh;
+        width: 60vw;
+        max-width: 60vw;
+        font-size: 100%; 
+    }
+
+    #itemBox {
+        display: flex;
+        flex-direction: column;
+        gap : 2vh;
+    }
+    
+    .textNav{
+        display: none;
+    }
+
+    .iconeNav{
+        width: 128px;
+        height: 128px;
+    }
+    
+}
